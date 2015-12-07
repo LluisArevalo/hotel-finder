@@ -1,9 +1,9 @@
 (function(){
-  HotelFinder.Ajax = function(){
+  HotelFinderApp.Ajax = function(){
 
   };
 
-  HotelFinder.Ajax.prototype.execute = function(uri, callback_function){
+  HotelFinderApp.Ajax.prototype.execute = function(uri, callback_function){
     $.ajax({
       url: uri,
       success: function(resopnse){

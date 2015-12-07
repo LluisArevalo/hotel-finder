@@ -1,12 +1,12 @@
-if(window.HotelFinder === undefined){
-  window.HotelFinder = {};
+if(window.HotelFinderApp === undefined){
+  window.HotelFinderApp = {};
 }
 
-HotelFinder.init = function(){
+HotelFinderApp.init = function(){
+  var geolocation = new HotelFinderApp.Geolocation();
   console.log("Initializing hotel finder app...");
-  geolocation = new HotelFinder.Geolocation();
 }
 
 $(document).on('ready', function(){
-  HotelFinder.init();
+  HotelFinderApp.init();
 });
