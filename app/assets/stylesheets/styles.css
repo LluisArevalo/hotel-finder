@@ -19,3 +19,7 @@
 #map {
   height: 75vh;
 }
+
+button.find-hotels {
+  margin-top: 10px;
+}

@@ -7,7 +7,7 @@
   HotelFinderApp.Geolocation = function(){
     this.ajax = new HotelFinderApp.Ajax();
     this.config = {
-      zoom: 15
+      zoom: 14
     };
 
     if("geolocation" in navigator){
@@ -16,22 +16,15 @@
   }
 
   HotelFinderApp.Geolocation.prototype.onLocation = function(position){
-    var myPosition = {
-      lat: position.coords.latitude,
-      lng: position.coords.longitude
-    }
-
-    var markerCurrentPosition = {
-      coords: myPosition,
-      formattedAddress: "Current location"
-    }
+    var centerMadrid = new google.maps.LatLng(40.4167754, -3.7037902);
 
     this.map = new google.maps.Map($('#map')[0], {
-      center: markerCurrentPosition.coords,
+      center: centerMadrid,
       zoom: this.config.zoom
     });
 
     this.setAutocomplete();
+    this.setButtonFindHotels();
   }
 
   HotelFinderApp.Geolocation.prototype.setAutocomplete = function(){
@@ -42,6 +35,15 @@
     autocomplete.addListener('place_changed', function(){
       var uri = '/api/poi/get/' + input.value;
       self.ajax.execute(uri, autocompleteOnSuccess.bind(self, autocomplete));
+    });
+  }
+
+  HotelFinderApp.Geolocation.prototype.setButtonFindHotels = function(){
+    var self = this;
+    
+    $('.find-hotels').on('click', function(event){
+      var hotels = new HotelFinderApp.Hotels();
+      hotels.loadHotels(self.map);
     });
   }
 
@@ -67,7 +69,8 @@
   function createMarker(markerInfo, map, name){
     var marker = new google.maps.Marker({
       position: markerInfo.coords,
-      map: map
+      map: map,
+      animation: google.maps.Animation.DROP
     });
 
     marker.addListener('click', function(){
