@@ -40,10 +40,6 @@
     var self = this;
 
     autocomplete.addListener('place_changed', function(){
-      // TODO: Before call the getPlace() method, I have to check if the place is already in the database
-      // The field used for this will be name
-      // PointsOfInterest in the database:
-      // name index, latitude float, longitude float
       var uri = '/api/poi/get/' + input.value;
       self.ajax.execute(uri, autocompleteOnSuccess.bind(self, autocomplete));
     });
@@ -52,11 +48,9 @@
   function autocompleteOnSuccess(autocomplete, response){
     if(response === null){
       var place = autocomplete.getPlace();
-      var name = place.name;
-
       savePointOfInterest(place, this.ajax);
     }else{
-      console.log("Actions in case of not null");
+      var place = generatePlace(response);
     }
 
     if(place.geometry.location){
@@ -64,9 +58,9 @@
       this.map.setZoom(this.config.zoom);
 
       var marker = createMarkerInfo(place);
-      createMarker(marker, this.map, name);
+      createMarker(marker, this.map, place.name);
 
-      addPlaceToList(name);
+      addPlaceToList(place.name);
     }
   }
 
@@ -110,8 +104,22 @@
     var parameters = {
       lat: place.geometry.location.lat(),
       lng: place.geometry.location.lng(),
-      description: place.name
+      name: place.name,
+      address: place.formatted_address
     }
+
+    var uri = "/api/poi/new/";
+    ajax.execute(uri, poiSaved, parameters);
+  }
+
+  function generatePlace(response){
+    return {
+      geometry: {
+        location: new google.maps.LatLng(parseFloat(response.latitude), 
+                                         parseFloat(response.longitude))
+      },
+      name: response.name
+    };
   }
 
   function poiSaved(){
