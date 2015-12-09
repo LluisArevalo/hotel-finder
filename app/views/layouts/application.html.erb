@@ -9,10 +9,10 @@
   <script src="https://maps.googleapis.com/maps/api/js?libraries=places"></script>
 </head>
 <body>
-  <header class="container">
+  <header class="content container">
     <article class="col-md-12 col-xs-12">
       <div class="pull-left">
-        <span class="glyphicon glyphicon-map-marker"></span>
+        <%= image_tag('logo.png') %>
       </div>
       <div class="pull-left">
         <h1>HotelFinder</h1>
@@ -20,8 +20,11 @@
       </div>
     </article>
   </header>
-
-<%# yield %>
-
+  <%= yield %>
+  <footer class="container-fluid">
+    <div class="container text-right">
+      developed by Lluís Arévalo
+    </div>
+  </footer>
 </body>
 </html>

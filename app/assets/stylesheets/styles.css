@@ -3,6 +3,7 @@
 html,
 body {
   font-family: 'Roboto';
+  height: 100%;
 }
 
 h1,
@@ -23,21 +24,63 @@ h2 {
   font-size: 20.1px;
 }
 
-header article.col-md-12 {
-  margin-top: 20px;
+header.content {
+  min-height: 60%;
+  min-width: 850px;
+  padding-top: 20px;
+  width: 100%;
 }
 
-header article.col-md-12 img {
+header.content img {
+  height: 45px;
   margin-top: 5px;
 }
 
+.main-content {
+  padding: 50px 0;
+}
+
+.main-content span {
+  color: #9e9e9e;
+  font-size: 18px;
+  font-weight: 100;
+  transition: .2s linear all;
+}
+
+.main-content span.js-focus-color {
+  /*color: #e41157;*/
+  color: #333;
+}
+
+.main-content li {
+  color: #333;
+  font-size: 15px;
+  font-weight: 300;
+  list-style-type: none;
+  padding-left: 0;
+}
+
 #get-places {
+  border: 1px solid #e9e9e9;
+  border-left: 0;
+  border-right: 0;
+  border-top: 0;
+  font-size: 15px;
+  font-weight: 300;
+  margin-top: 5px;
+  margin-bottom: 30px;
+  outline: 0;
+  transition: .2s linear all;
   width: 100%;
-  margin-bottom: 10%;
+}
+
+#get-places:focus {
+  /*border-color: #e41157;*/
+  border-color: #333;
 }
 
 #input-wrapper {
-  margin: 0;
+  margin: 0 0 40px 0;
   width: 100%;
   height: 50px;
 }
@@ -51,8 +94,37 @@ header article.col-md-12 img {
 
 #map {
   height: 75vh;
+  padding: 0;
 }
 
 button.find-hotels {
+  background: #e41157;
+  border: 1px solid #e41157;
+  color: #fff;
+  font-size: 18px;
+  font-weight: 300;
   margin-top: 10px;
+  padding: 6px 0;
+  text-align: center;
+  text-transform: uppercase;
+  transition: .2s linear all;
+}
+
+button.find-hotels:hover {
+  background: #f01d63;
+  border-color: #f01d63;
+  box-shadow: 0 2px 10px #999;
+}
+
+footer {
+  background: #333;
+  color: #fff;
+  font-size: 14px;
+  font-weight: 300;
+  margin-bottom: 15px;
+  padding: 35px 0;
+}
+
+.hidden {
+  display: none;
 }

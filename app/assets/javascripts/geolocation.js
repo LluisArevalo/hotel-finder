@@ -7,7 +7,8 @@
   HotelFinderApp.Geolocation = function(){
     this.ajax = new HotelFinderApp.Ajax();
     this.config = {
-      zoom: 14
+      initZoom: 14,
+      zoom: 16
     };
 
     if("geolocation" in navigator){
@@ -20,7 +21,7 @@
 
     this.map = new google.maps.Map($('#map')[0], {
       center: centerMadrid,
-      zoom: this.config.zoom
+      zoom: this.config.initZoom
     });
 
     this.setAutocomplete();
@@ -63,6 +64,7 @@
       createMarker(marker, this.map, place.name);
 
       addPlaceToList(place.name);
+      clearAutocompleteText();
     }
   }
 
@@ -123,6 +125,11 @@
       },
       name: response.name
     };
+  }
+
+  function clearAutocompleteText(){
+    $("#get-places").val("");
+    $("button.find-hotels").removeClass("hidden");
   }
 
   function poiSaved(){
