@@ -1,5 +1,6 @@
 class PointOfInterest < ActiveRecord::Base
-  def self.get_by_name name
-    PointOfInterest.find_by_name(name)
-  end
+  
+  scope :by_name, -> (name){ where("name LIKE ?", "%#{name}%") }
+  scope :get_by_name, -> (name){ find_by_name(name) }
+  
 end

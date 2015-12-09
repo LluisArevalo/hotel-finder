@@ -1,22 +1,30 @@
 class PointsofinterestController < ApplicationController
   def create
     parameters = JSON.parse(params[:ajax_parameters].to_json)
-    poi = PointOfInterest.new(name: parameters['name'],
-                        latitude: parameters['lat'],
-                        longitude: parameters['lng'],
-                        address: parameters['address'])
+    poi = PointOfInterest.new(generate_new_poi(parameters))
     
-    if(poi.save)
-      render(json: poi, status: 201)
+    if poi.save
+      render(json: poi, status: :created)
     else
-      render(status: 400)
+      render(status: :bad_request)
     end
   end
 
-  def get
-    name = params[:name].split(',')
-    poi = PointOfInterest.where("name LIKE '%#{name[0]}%'").first
+  def search
+    name = params[:name].split(',')[0]
+    poi = PointOfInterest.by_name(name).first
     
-    render(json: poi)
+    render(json: poi, status: :ok)
+  end
+
+  private
+
+  def generate_new_poi parameters
+    {
+      name: parameters['name'],
+      latitude: parameters['lat'],
+      longitude: parameters['lng'],
+      address: parameters['address']
+    }
   end
 end
