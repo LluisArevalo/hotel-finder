@@ -26,6 +26,7 @@
 
     this.setAutocomplete();
     this.setButtonFindHotels();
+    hidePageLoader();
   }
 
   HotelFinderApp.Geolocation.prototype.setAutocomplete = function(){
@@ -125,6 +126,10 @@
       },
       name: response.name
     };
+  }
+
+  function hidePageLoader(){
+    $("#loading").addClass("hidden");
   }
 
   function clearAutocompleteText(){
