@@ -1,6 +1,5 @@
 class HotelsController < ApplicationController
   def create
-    
     parameters = JSON.parse(params[:ajax_parameters].to_json)
     p = generate_new_hotel(parameters)
     

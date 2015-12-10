@@ -44,9 +44,15 @@
     var self = this;
     
     $('.find-hotels').on('click', function(event){
-      var hotels = new HotelFinderApp.Hotels();
-      hotels.loadHotels(self.map);
+      // var hotels = new HotelFinderApp.Hotels();
+      // hotels.loadHotels(self.map);
+      var uri = '/api/poi/get_hotels_around/1';
+      self.ajax(uri, hotelsFound);
     });
+  }
+
+  function hotelsFound(response){
+    console.log(response);
   }
 
   function autocompleteOnSuccess(autocomplete, response){

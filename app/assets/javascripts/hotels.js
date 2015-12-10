@@ -24,8 +24,8 @@
   function onCallback(response){
     var self = this;
     
-    saveHotel(response[0], self.ajax);
     response.forEach(function(hotel){
+      // saveHotel(hotel, self.ajax);
       createMarker(createMarkerInfo(hotel), self.map, response.name);
     });
   }
