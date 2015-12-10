@@ -18,9 +18,8 @@ class PointsofinterestController < ApplicationController
   end
 
   def find_hotels_around
-    poi = PointOfInterest.find_by_id(params[:poi_id])
+    hotels = Searcher.search_hotels_around(params[:ajax_parameters])
     
-    hotels = poi.find_hotels_around
     render(json: hotels, status: :ok)
   end
 

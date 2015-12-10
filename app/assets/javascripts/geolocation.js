@@ -3,6 +3,7 @@
   var ajax;
   var map;
   var config;
+  var currentPois;
 
   HotelFinderApp.Geolocation = function(){
     this.ajax = new HotelFinderApp.Ajax();
@@ -10,6 +11,7 @@
       initZoom: 14,
       zoom: 16
     };
+    this.currentPois = [];
 
     if("geolocation" in navigator){
       navigator.geolocation.getCurrentPosition(this.onLocation.bind(this), this.onError);
@@ -44,15 +46,15 @@
     var self = this;
     
     $('.find-hotels').on('click', function(event){
-      // var hotels = new HotelFinderApp.Hotels();
-      // hotels.loadHotels(self.map);
-      var uri = '/api/poi/get_hotels_around/1';
-      self.ajax(uri, hotelsFound);
+      var uri = '/api/poi/get_hotels_around/';
+      var parameters = self.currentPois;
+      self.ajax.execute(uri, hotelsFound.bind(self), parameters);
     });
   }
 
   function hotelsFound(response){
-    console.log(response);
+    var hotels = new HotelFinderApp.Hotels();
+    hotels.loadHotels(this.map, response);
   }
 
   function autocompleteOnSuccess(autocomplete, response){
@@ -72,6 +74,7 @@
 
       addPlaceToList(place.name);
       clearAutocompleteText();
+      this.currentPois.push(place.id);
     }
   }
 
@@ -130,7 +133,8 @@
         location: new google.maps.LatLng(parseFloat(response.latitude), 
                                          parseFloat(response.longitude))
       },
-      name: response.name
+      name: response.name,
+      id: response.id
     };
   }
 
@@ -144,7 +148,7 @@
   }
 
   function poiSaved(){
-    console.log("Point of interest saved correctly");
+    console.log("Saved the point of interest in the database");
   }
 
   HotelFinderApp.Geolocation.prototype.onError = function(error){

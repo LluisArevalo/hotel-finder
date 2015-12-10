@@ -5,7 +5,7 @@ class PointOfInterest < ActiveRecord::Base
   
   def find_hotels_around
     geom_point = "POINT(#{self.latitude} #{self.longitude})"
-    sql = "SELECT * FROM hotels WHERE ST_DWithin(latlong, '#{geom_point}', 500)"
+    sql = "SELECT * FROM hotels WHERE ST_DWithin(latlong, '#{geom_point}', 1000)"
 
     Hotel.find_by_sql(sql)
   end  

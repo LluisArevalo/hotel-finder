@@ -7,27 +7,27 @@
     this.ajax = new HotelFinderApp.Ajax();
   };
 
-  HotelFinderApp.Hotels.prototype.loadHotels = function(googleMap){
-    this.map = googleMap;
-
+  HotelFinderApp.Hotels.prototype.loadHotels = function(googleMap, hotels){
+    var self = this;
     var centerMadrid = new google.maps.LatLng(40.4167754, -3.7037902);
-    var service = new google.maps.places.PlacesService(this.map);
+    
+    this.map = googleMap;
+    //var service = new google.maps.places.PlacesService(this.map);
     var request = {
       location: centerMadrid,
       radius: '5000',
       query: 'hotel'
     };
-
-    service.textSearch(request, onCallback.bind(this));
+    
+    hotels.forEach(function(hotel){
+      createMarker(createMarkerInfo(hotel), self.map, hotel.name);  
+    });
+    //loadMarkers(hotels, this.map);
+    //service.textSearch(request, onCallback.bind(this));
   };
 
-  function onCallback(response){
-    var self = this;
-    
-    response.forEach(function(hotel){
-      // saveHotel(hotel, self.ajax);
-      createMarker(createMarkerInfo(hotel), self.map, response.name);
-    });
+  function loadHotels(hotels){
+
   }
 
   function saveHotel(hotel, ajax){
@@ -55,21 +55,30 @@
       icon: image
     });
     
+    console.log(markerInfo);
+    
     marker.addListener('click', function(){
       getInfoWindow(name).open(map, marker);
     });
   }
 
   function createMarkerInfo(place){
+    var coordinates = getCoordenatesFromPostgis(place.latlong);
+
     var position = {
-      lat: place.geometry.location.lat(),
-      lng: place.geometry.location.lng()
+      lat: parseFloat(coordinates[0]),
+      lng: parseFloat(coordinates[1])
     }
 
     return {
       coords: position,
       description: place.name
     }
+  }
+
+  function getCoordenatesFromPostgis(latlong){
+    var coordinates = latlong.replace("POINT (", "").replace(")");
+    return coordinates.split(" ");
   }
 
   function getInfoWindow(name){
