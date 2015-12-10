@@ -1,9 +1,10 @@
 (function(){
   "use strict";
   var map;
+  var ajax;
 
   HotelFinderApp.Hotels = function(){
-    
+    this.ajax = new HotelFinderApp.Ajax();
   };
 
   HotelFinderApp.Hotels.prototype.loadHotels = function(googleMap){
@@ -22,10 +23,27 @@
 
   function onCallback(response){
     var self = this;
-
+    
+    saveHotel(response[0], self.ajax);
     response.forEach(function(hotel){
       createMarker(createMarkerInfo(hotel), self.map, response.name);
     });
+  }
+
+  function saveHotel(hotel, ajax){
+    var parameters = {
+      name: hotel.name,
+      address: hotel.formatted_address,
+      lat: hotel.geometry.location.lat(),
+      lng: hotel.geometry.location.lng()
+    }
+
+    var uri = '/api/hotel/new/';
+    ajax.execute(uri, onHotelSaved, parameters);
+  }
+
+  function onHotelSaved(){
+    console.log("Hotel saved on the database");
   }
 
   function createMarker(markerInfo, map, name){

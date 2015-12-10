@@ -3,4 +3,5 @@ Rails.application.routes.draw do
 
   get '/api/poi/new/' => 'pointsofinterest#create'
   get '/api/poi/get/:name' => 'pointsofinterest#search'
+  get '/api/hotel/new/' => 'hotels#create'
 end

@@ -11,10 +11,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151208145136) do
+ActiveRecord::Schema.define(version: 20151210094943) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+  enable_extension "postgis"
+
+  create_table "hotels", force: :cascade do |t|
+    t.string    "name"
+    t.string    "address"
+    t.geography "latlong",    limit: {:srid=>4326, :type=>"point", :geographic=>true}
+    t.datetime  "created_at",                                                          null: false
+    t.datetime  "updated_at",                                                          null: false
+  end
 
   create_table "point_of_interests", force: :cascade do |t|
     t.string   "name"

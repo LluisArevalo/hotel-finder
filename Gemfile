@@ -1,5 +1,8 @@
 source 'https://rubygems.org'
 
+# Activerecord Postgis Adapter
+gem 'activerecord-postgis-adapter'
+# Font awesome
 gem 'font-awesome-sass', '~> 4.4.0'
 # TDD
 gem 'rspec-rails'
