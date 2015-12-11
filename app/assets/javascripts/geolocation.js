@@ -148,9 +148,7 @@
   }
 
   function poiSaved(currentPois, response){
-    // console.log("This: " + this);
-    // console.log("Current POIS: " + currentPois);
-    currentPois.push(response.id)
+    currentPois.push(response.id);
     console.log("Saved the point of interest in the database");
   }
 

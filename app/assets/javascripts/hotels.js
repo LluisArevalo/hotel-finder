@@ -12,7 +12,6 @@
     var centerMadrid = new google.maps.LatLng(40.4167754, -3.7037902);
     
     this.map = googleMap;
-    //var service = new google.maps.places.PlacesService(this.map);
     var request = {
       location: centerMadrid,
       radius: '5000',
@@ -22,8 +21,6 @@
     hotels.forEach(function(hotel){
       createMarker(createMarkerInfo(hotel), self.map, hotel.name);  
     });
-    //loadMarkers(hotels, this.map);
-    //service.textSearch(request, onCallback.bind(this));
   };
 
   function loadHotels(hotels){
@@ -54,11 +51,14 @@
       map: map,
       icon: image
     });
-    
-    console.log(markerInfo);
-    
-    marker.addListener('click', function(){
-      getInfoWindow(name).open(map, marker);
+
+    markerClick(marker, map, name);
+  }
+
+  function markerClick(marker, map, name){
+    google.maps.event.addListener(marker, 'click', function(){
+      var circle = getRadiusCircle(marker, map);
+      getInfoWindow(name, circle).open(map, marker);
     });
   }
 
@@ -81,9 +81,30 @@
     return coordinates.split(" ");
   }
 
-  function getInfoWindow(name){
-    return new google.maps.InfoWindow({
+  function getInfoWindow(name, circle){
+    var infoWindow = new google.maps.InfoWindow({
       content: name
     });
+
+    google.maps.event.addListener(infoWindow, 'closeclick', function(){
+      circle.setMap(null);
+    });
+
+    return infoWindow;
+  }
+
+  function getRadiusCircle(marker, map){
+    var circle = new google.maps.Circle({
+      map: map,
+      radius: 1000,
+      fillColor: '#e41157',
+      fillOpacity: 0.1,
+      strokeColor: '#999999',
+      strokeOpacity: 0
+    });
+
+    circle.bindTo('center', marker, 'position');
+
+    return circle;
   }
 })();
