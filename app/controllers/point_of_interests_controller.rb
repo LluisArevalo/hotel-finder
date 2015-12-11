@@ -2,7 +2,7 @@ class PointOfInterestsController < ApplicationController
   def create
     parameters = JSON.parse(params[:ajax_parameters].to_json)
     poi = PointOfInterest.new(generate_new_poi(parameters))
-    
+
     if poi.save
       render(json: poi, status: :created)
     else

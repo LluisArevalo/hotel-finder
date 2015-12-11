@@ -39,7 +39,7 @@
     var self = this;
 
     autocomplete.addListener('place_changed', function(){
-      var uri = '/api/poi/get/' + input.value;
+      var uri = '/api/point_of_interests/get/' + input.value;
       self.ajax.execute(uri, autocompleteOnSuccess.bind(self, autocomplete));
     });
   }
@@ -48,7 +48,7 @@
     var self = this;
     
     $('.find-hotels').on('click', function(event){
-      var uri = '/api/poi/get_hotels_around/';
+      var uri = '/api/point_of_interests/get_hotels_around/';
       var parameters = self.currentPois;
       self.ajax.execute(uri, hotelsFound.bind(self), parameters);
     });
@@ -96,7 +96,7 @@
     }
 
     var uri = "/api/point_of_interests";
-    ajax.execute(uri, poiSaved.bind(this, currentPois), parameters, 'post');
+    ajax.execute(uri, poiSaved.bind(this, currentPois), parameters);
   }
 
   function generatePlace(response){

@@ -34,7 +34,7 @@
     }
 
     var uri = '/api/hotels';
-    ajax.execute(uri, onHotelSaved, parameters, 'post');
+    ajax.execute(uri, onHotelSaved, parameters, 'POST');
   }
 
   function onHotelSaved(){

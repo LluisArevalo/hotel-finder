@@ -1,12 +1,13 @@
 Rails.application.routes.draw do
   get '/' => 'site#home'
 
-  namespace :api do
-    resources :hotels, only: [:create]
-    resources :point_of_interests, only: [:create]
-  end
+  # scope '/api' do
+    #resources :hotels, only: [:create]
+    # resources :point_of_interests, only: [:create]
+  # end
   
-  #TODO: Meter todas las URL's en el namespace
-  get '/api/poi/get/:name' => 'point_of_interests#search'
-  get '/api/poi/get_hotels_around/' => 'point_of_interests#find_hotels_around'
+  get '/api/hotels' => 'hotels#create'
+  get '/api/point_of_interests' => 'point_of_interests#create'
+  get '/api/point_of_interests/get/:name' => 'point_of_interests#search'
+  get '/api/point_of_interests/get_hotels_around/' => 'point_of_interests#find_hotels_around'
 end
