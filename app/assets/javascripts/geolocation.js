@@ -60,9 +60,10 @@
   function autocompleteOnSuccess(autocomplete, response){
     if(response === null){
       var place = autocomplete.getPlace();
-      savePointOfInterest(place, this.ajax);
+      savePointOfInterest(place, this.ajax, this.currentPois);
     }else{
       var place = generatePlace(response);
+      this.currentPois.push(place.id);
     }
 
     if(place.geometry.location){
@@ -74,7 +75,6 @@
 
       addPlaceToList(place.name);
       clearAutocompleteText();
-      this.currentPois.push(place.id);
     }
   }
 
@@ -115,7 +115,7 @@
     list.append(html);
   }
 
-  function savePointOfInterest(place, ajax){
+  function savePointOfInterest(place, ajax, currentPois){
     var parameters = {
       lat: place.geometry.location.lat(),
       lng: place.geometry.location.lng(),
@@ -124,7 +124,7 @@
     }
 
     var uri = "/api/poi/new/";
-    ajax.execute(uri, poiSaved, parameters);
+    ajax.execute(uri, poiSaved.bind(this, currentPois), parameters);
   }
 
   function generatePlace(response){
@@ -147,7 +147,10 @@
     $("button.find-hotels").removeClass("hidden");
   }
 
-  function poiSaved(){
+  function poiSaved(currentPois, response){
+    // console.log("This: " + this);
+    // console.log("Current POIS: " + currentPois);
+    currentPois.push(response.id)
     console.log("Saved the point of interest in the database");
   }
 
