@@ -1,4 +1,4 @@
-class PointsofinterestController < ApplicationController
+class PointOfInterestsController < ApplicationController
   def create
     parameters = JSON.parse(params[:ajax_parameters].to_json)
     poi = PointOfInterest.new(generate_new_poi(parameters))
@@ -19,7 +19,7 @@ class PointsofinterestController < ApplicationController
 
   def find_hotels_around
     hotels = Searcher.search_hotels_around(params[:ajax_parameters])
-    
+    #TODO: jbuilder -> Create json with the correct fields
     render(json: hotels, status: :ok)
   end
 

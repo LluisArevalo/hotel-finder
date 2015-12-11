@@ -4,6 +4,7 @@
   var map;
   var config;
   var currentPois;
+  var utilities;
 
   HotelFinderApp.Geolocation = function(){
     this.ajax = new HotelFinderApp.Ajax();
@@ -12,6 +13,7 @@
       zoom: 16
     };
     this.currentPois = [];
+    this.utilities = new HotelFinderApp.Utilities();
 
     if("geolocation" in navigator){
       navigator.geolocation.getCurrentPosition(this.onLocation.bind(this), this.onError);
@@ -70,42 +72,12 @@
       this.map.setCenter(place.geometry.location);
       this.map.setZoom(this.config.zoom);
 
-      var marker = createMarkerInfo(place);
-      createMarker(marker, this.map, place.name);
+      var marker = this.utilities.createMarkerInfo(place);
+      this.utilities.createMarker(marker, this.map, place.name);
 
       addPlaceToList(place.name);
       clearAutocompleteText();
     }
-  }
-
-  function createMarker(markerInfo, map, name){
-    var marker = new google.maps.Marker({
-      position: markerInfo.coords,
-      map: map,
-      animation: google.maps.Animation.DROP
-    });
-
-    marker.addListener('click', function(){
-      getInfoWindow(name).open(map, marker);
-    });
-  }
-
-  function createMarkerInfo(place){
-    var position = {
-      lat: place.geometry.location.lat(),
-      lng: place.geometry.location.lng()
-    }
-
-    return {
-      coords: position,
-      description: place.name
-    }
-  }
-
-  function getInfoWindow(name){
-    return new google.maps.InfoWindow({
-      content: name
-    });
   }
 
   function addPlaceToList(name){
@@ -123,8 +95,8 @@
       address: place.formatted_address
     }
 
-    var uri = "/api/poi/new/";
-    ajax.execute(uri, poiSaved.bind(this, currentPois), parameters);
+    var uri = "/api/point_of_interests";
+    ajax.execute(uri, poiSaved.bind(this, currentPois), parameters, 'post');
   }
 
   function generatePlace(response){
