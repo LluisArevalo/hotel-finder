@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   # end
   
   get '/api/hotels' => 'hotels#create'
-  get '/api/point_of_interests' => 'point_of_interests#create'
+  post '/api/point_of_interests', :to => 'point_of_interests#create'
   get '/api/point_of_interests/get/:name' => 'point_of_interests#search'
   get '/api/point_of_interests/get_hotels_around/' => 'point_of_interests#find_hotels_around'
 end

@@ -96,7 +96,7 @@
     }
 
     var uri = "/api/point_of_interests";
-    ajax.execute(uri, poiSaved.bind(this, currentPois), parameters);
+    ajax.execute(uri, poiSaved.bind(this, currentPois), parameters, 'POST');
   }
 
   function generatePlace(response){

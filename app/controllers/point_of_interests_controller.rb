@@ -1,4 +1,6 @@
 class PointOfInterestsController < ApplicationController
+  skip_before_action :verify_authenticity_token
+  
   def create
     parameters = JSON.parse(params[:ajax_parameters].to_json)
     poi = PointOfInterest.new(generate_new_poi(parameters))
