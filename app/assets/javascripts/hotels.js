@@ -21,7 +21,7 @@
     };
     
     hotels.forEach(function(hotel){
-      self.utilities.createMarker(self.utilities.createMarkerInfo(hotel), self.map, hotel.name);  
+      self.utilities.createMarker(self.utilities.createMarkerInfo(hotel), self.map, hotel.name);
     });
   };
 
