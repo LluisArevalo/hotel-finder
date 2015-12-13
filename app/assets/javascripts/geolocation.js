@@ -6,6 +6,7 @@
   var currentPois;
   var currentMarkers;
   var utilities;
+  var hotelHandler;
 
   HotelFinderApp.Geolocation = function(){
     this.ajax = new HotelFinderApp.Ajax();
@@ -16,6 +17,7 @@
     this.currentPois = [];
     this.currentMarkers = {};
     this.utilities = new HotelFinderApp.Utilities();
+    this.hotelHandler = new HotelFinderApp.Hotels();
 
     if("geolocation" in navigator){
       navigator.geolocation.getCurrentPosition(this.onLocation.bind(this), this.onError);
@@ -76,8 +78,7 @@
   }
 
   function hotelsFound(response){
-    var hotels = new HotelFinderApp.Hotels();
-    hotels.loadHotels(this.map, response);
+    this.hotelHandler.loadHotels(this.map, response);
   }
 
   function autocompleteOnSuccess(autocomplete, response){
