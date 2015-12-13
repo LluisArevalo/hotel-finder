@@ -14,7 +14,7 @@
       zoom: 16
     };
     this.currentPois = [];
-    this.currentMarkers = [];
+    this.currentMarkers = {};
     this.utilities = new HotelFinderApp.Utilities();
 
     if("geolocation" in navigator){
@@ -62,8 +62,16 @@
   }
 
   HotelFinderApp.Geolocation.prototype.setRemoveButtonAction = function(){
-    $('body').on('click', '.remove-marker', function(currentTarget){
-      console.log("Deleting marker");
+    var self = this;
+
+    $('body').on('click', '.remove-marker', function(event){
+      var currentElement = $(event.currentTarget);
+      var id = currentElement.attr("data-id");
+
+      self.currentMarkers[id].setMap(null);
+      self.currentMarkers[id] = null;
+      self.currentPois.splice(self.currentPois.indexOf(id), 1);
+      currentElement.parent().remove();
     });
   }
 
@@ -86,16 +94,21 @@
       this.map.setZoom(this.config.zoom);
 
       var markerInfo = this.utilities.createMarkerInfo(place);
-      this.utilities.createMarker(markerInfo, this.map, place.name);
-    
-      addPlaceToList(place.name);
+      var marker = this.utilities.createMarker(markerInfo, this.map, place.name);
+      addCurrentMarker.bind(this)(place, marker);
+
+      addPlaceToList(place);
       clearAutocompleteText();
     }
   }
 
-  function addPlaceToList(name){
+  function addCurrentMarker(place, marker){
+    this.currentMarkers[place.id] = marker;
+  }
+
+  function addPlaceToList(place){
     var list = $('#mapList').find('ul');
-    var html = '<li>' + name + '</li>';
+    var html = '<li>' + place.name + ' <a class="remove-marker" data-id="' + place.id + '">remove</a></li>';
 
     list.append(html);
   }
