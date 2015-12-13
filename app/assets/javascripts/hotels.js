@@ -20,6 +20,7 @@
       query: 'hotel'
     };
     
+    self.utilities.clearHotelMarkers();
     hotels.forEach(function(hotel){
       self.utilities.createMarker(self.utilities.createMarkerInfo(hotel), self.map, hotel.name);
     });

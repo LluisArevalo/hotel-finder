@@ -1,13 +1,15 @@
 (function(){
   "use strict";
   var isHotel;
+  var currentHotels;
 
   HotelFinderApp.Utilities = function(isHotel){
     this.isHotel = isHotel || false;
+    this.currentHotels = [];
   };
 
   HotelFinderApp.Utilities.prototype.createMarker = function(markerInfo, map, name){
-    return this.isHotel ? generateHotelMarker(markerInfo, map, name) : generatePoiMarker(markerInfo, map, name);
+    return this.isHotel ? generateHotelMarker.bind(this)(markerInfo, map, name) : generatePoiMarker(markerInfo, map, name);
   };
 
   HotelFinderApp.Utilities.prototype.createMarkerInfo = function(place){
@@ -18,6 +20,12 @@
       description: place.name
     }
   };
+
+  HotelFinderApp.Utilities.prototype.clearHotelMarkers = function(){
+    this.currentHotels.forEach(function(marker){
+      marker.setMap(null);
+    });
+  }
 
   function getCoordinatesPoi(place){
     return {
@@ -54,6 +62,7 @@
     });
 
     getHotelMarkerEvent(marker, map, name);
+    this.currentHotels.push(marker);
 
     return marker;
   }
