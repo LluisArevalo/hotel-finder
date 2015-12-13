@@ -7,7 +7,7 @@
   };
 
   HotelFinderApp.Utilities.prototype.createMarker = function(markerInfo, map, name){
-    this.isHotel ? generateHotelMarker(markerInfo, map, name) : generatePoiMarker(markerInfo, map, name);
+    return this.isHotel ? generateHotelMarker(markerInfo, map, name) : generatePoiMarker(markerInfo, map, name);
   };
 
   HotelFinderApp.Utilities.prototype.createMarkerInfo = function(place){
@@ -39,7 +39,9 @@
       });
 
       infoWindow.open(map, marker);
-    });    
+    });
+
+    return marker;
   }
 
   function generateHotelMarker(markerInfo, map, name){

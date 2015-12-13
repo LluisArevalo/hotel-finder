@@ -4,6 +4,7 @@
   var map;
   var config;
   var currentPois;
+  var currentMarkers;
   var utilities;
 
   HotelFinderApp.Geolocation = function(){
@@ -13,6 +14,7 @@
       zoom: 16
     };
     this.currentPois = [];
+    this.currentMarkers = [];
     this.utilities = new HotelFinderApp.Utilities();
 
     if("geolocation" in navigator){
@@ -30,7 +32,12 @@
 
     this.setAutocomplete();
     this.setButtonFindHotels();
+    this.setRemoveButtonAction();
     hidePageLoader();
+  }
+
+  HotelFinderApp.Geolocation.prototype.onError = function(error){
+    console.log("Error running the Geolocation script. Details: " + error);
   }
 
   HotelFinderApp.Geolocation.prototype.setAutocomplete = function(){
@@ -54,6 +61,12 @@
     });
   }
 
+  HotelFinderApp.Geolocation.prototype.setRemoveButtonAction = function(){
+    $('body').on('click', '.remove-marker', function(currentTarget){
+      console.log("Deleting marker");
+    });
+  }
+
   function hotelsFound(response){
     var hotels = new HotelFinderApp.Hotels();
     hotels.loadHotels(this.map, response);
@@ -72,9 +85,9 @@
       this.map.setCenter(place.geometry.location);
       this.map.setZoom(this.config.zoom);
 
-      var marker = this.utilities.createMarkerInfo(place);
-      this.utilities.createMarker(marker, this.map, place.name);
-
+      var markerInfo = this.utilities.createMarkerInfo(place);
+      this.utilities.createMarker(markerInfo, this.map, place.name);
+    
       addPlaceToList(place.name);
       clearAutocompleteText();
     }
@@ -122,9 +135,5 @@
   function poiSaved(currentPois, response){
     currentPois.push(response.id);
     console.log("Saved the point of interest in the database");
-  }
-
-  HotelFinderApp.Geolocation.prototype.onError = function(error){
-    console.log("Error running the Geolocation script. Details: " + error);
   }
 })();

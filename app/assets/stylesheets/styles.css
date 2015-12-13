@@ -30,74 +30,6 @@ header.content {
   width: 100%;
 }
 
-.fa-map-marker {
-  color: #e41157;
-  font-size: 50px;
-  margin-right: 10px;
-  margin-top: 3px;
-}
-
-.main-content {
-  padding: 50px 0;
-}
-
-.main-content span {
-  color: #9e9e9e;
-  font-size: 18px;
-  font-weight: 100;
-  transition: .2s linear all;
-}
-
-.main-content span.js-focus-color {
-  /*color: #e41157;*/
-  color: #333;
-}
-
-.main-content li {
-  color: #333;
-  font-size: 15px;
-  font-weight: 300;
-  list-style-type: none;
-  padding-left: 0;
-}
-
-#get-places {
-  border: 1px solid #e9e9e9;
-  border-left: 0;
-  border-right: 0;
-  border-top: 0;
-  font-size: 15px;
-  font-weight: 300;
-  margin-top: 5px;
-  margin-bottom: 30px;
-  outline: 0;
-  transition: .2s linear all;
-  width: 100%;
-}
-
-#get-places:focus {
-  /*border-color: #e41157;*/
-  border-color: #333;
-}
-
-#input-wrapper {
-  margin: 0 0 40px 0;
-  width: 100%;
-  height: 50px;
-}
-
-#input-wrapper input {
-  height: 35px;
-  box-sizing: border-box;
-  padding: 10px;
-  font-size: 14px;
-}
-
-#map {
-  height: 75vh;
-  padding: 0;
-}
-
 button.find-hotels {
   background: #e41157;
   border: 1px solid #e41157;
@@ -126,12 +58,91 @@ footer {
   padding: 35px 0;
 }
 
-.hidden {
-  display: none;
+#get-places {
+  border: 1px solid #e9e9e9;
+  border-left: 0;
+  border-right: 0;
+  border-top: 0;
+  font-size: 15px;
+  font-weight: 300;
+  margin-top: 5px;
+  margin-bottom: 30px;
+  outline: 0;
+  transition: .2s linear all;
+  width: 100%;
+}
+
+#get-places:focus {
+  border-color: #333;
+}
+
+#input-wrapper {
+  margin: 0 0 40px 0;
+  width: 100%;
+  height: 50px;
+}
+
+#input-wrapper input {
+  height: 35px;
+  box-sizing: border-box;
+  padding: 10px;
+  font-size: 14px;
+}
+
+#map {
+  height: 75vh;
+  padding: 0;
 }
 
 #loading p {
   color: #e41157;
   font-weight: 300;
   margin: 10px 0 0 0;
+}
+
+.fa-map-marker {
+  color: #e41157;
+  font-size: 50px;
+  margin-right: 10px;
+  margin-top: 3px;
+}
+
+.main-content {
+  padding: 50px 0;
+}
+
+.main-content span {
+  color: #9e9e9e;
+  font-size: 18px;
+  font-weight: 100;
+  transition: .2s linear all;
+}
+
+.main-content span.js-focus-color {
+  color: #333;
+}
+
+.main-content li {
+  color: #333;
+  font-size: 15px;
+  font-weight: 300;
+  list-style-type: none;
+  padding-left: 0;
+}
+
+.hidden {
+  display: none;
+}
+
+.remove-marker,
+.remove-marker:visited {
+  color: #e41157;
+  cursor: pointer;
+  text-decoration: underline;
+  transition: .2s linear all;
+}
+
+.remove-marker:hover {
+  color: #333;
+  text-decoration: none;
 }
