@@ -8,5 +8,5 @@ class PointOfInterest < ActiveRecord::Base
     sql = "SELECT * FROM hotels WHERE ST_DWithin(latlong, '#{geom_point}', 1000)"
 
     Hotel.find_by_sql(sql)
-  end  
+  end
 end

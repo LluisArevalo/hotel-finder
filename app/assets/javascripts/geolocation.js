@@ -94,11 +94,14 @@
       this.map.setCenter(place.geometry.location);
       this.map.setZoom(this.config.zoom);
 
-      var markerInfo = this.utilities.createMarkerInfo(place);
-      var marker = this.utilities.createMarker(markerInfo, this.map, place.name);
-      addCurrentMarker.bind(this)(place, marker);
+      if(this.currentMarkers[place.id] === undefined){
+        var markerInfo = this.utilities.createMarkerInfo(place);
+        var marker = this.utilities.createMarker(markerInfo, this.map, place.name);
+        addCurrentMarker.bind(this)(place, marker);
 
-      addPlaceToList(place);
+        addPlaceToList(place);
+      }
+
       clearAutocompleteText();
     }
   }

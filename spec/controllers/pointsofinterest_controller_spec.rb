@@ -1,5 +1,5 @@
 require 'rails_helper'
 
-RSpec.describe PointsofinterestController, type: :controller do
+RSpec.describe PointOfInterestsController, type: :controller do
   
 end
