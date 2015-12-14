@@ -1,0 +1,47 @@
+<section class="container">
+  <div id="title" class="col-md-12 col-xs-12">
+    <h2>Edit hotel</h2>
+  </div>
+  <%= form_for @hotel, :html => { :class => 'hotel-new' } do |f| %>
+    <div class="pull-left col-md-4 col-xs-4 margin-bottom">
+      <%= f.label :name %><br>
+      <%= f.text_field :name, :disabled => true %>
+    </div>
+    <div class="pull-left col-md-8 col-xs-8 margin-bottom">
+      <%= f.label :address %><br>
+      <%= f.text_field :address, :disabled => true, :html => { :class => 'txt-address' } %>
+    </div>
+    <div class="pull-left col-md-4 col-xs-4">
+      <%= f.label :price %><br>
+      <%= f.text_field :price, :autofocus => true %><br>
+    </div>
+    <div class="pull-left col-md-8 col-xs-8">
+      <%= f.label :website %><br>
+      <%= f.text_field :website, :html => { :class => 'txt-address' } %><br>
+    </div>
+    <div class="pull-right col-md-2 col-xs-2 margin-bottom pink-button">
+      <%= f.submit :update %>
+    </div>
+  <% end %>
+  <!-- <form action="/hotels" method="post" class="hotel-new">
+    <div class="pull-left col-md-4 col-xs-4 margin-bottom">
+      <label for="name">Name</label><br>
+      <input type="text" id="name" name="[hotel][name]" disabled><br>
+    </div>
+    <div class="pull-right col-md-8 col-xs-8 margin-bottom">
+      <label for="name">Address</label><br>
+      <input type="text" id="address" name="[hotel][address]" class="txt-address" disabled><br>
+    </div>
+    <div class="pull-left col-md-4 col-xs-4">
+      <label for="name">Price</label><br>
+      <input type="text" id="price" name="[hotel][price]"><br>
+    </div>
+    <div class="pull-right col-md-8 col-xs-8">
+      <label for="name">Website</label><br>
+      <input type="text" id="website" name="[hotel][website]" class="txt-address"><br>
+    </div>
+    <div class="col-md-2 col-xs-2 pull-right margin-bottom">
+      <button type="submit" class="btn">Update</button>
+    </div>
+  </form> -->
+</section>

@@ -9,6 +9,10 @@ class HotelsController < ApplicationController
 
   end
 
+  def edit
+    @hotel = Hotel.find_by_id(params[:id])
+  end
+
   def create
     parameters = generate_new_hotel(params[:hotel])
     hotel = Hotel.new(parameters)
@@ -16,18 +20,28 @@ class HotelsController < ApplicationController
     if hotel.save
       redirect_to(hotels_path)
     else
+      #TODO: Implement the errors control
+    end
+  end
 
+  def update
+    hotel = Hotel.find_by_id(params[:id])
+
+    if hotel.update(update_hotel(params))
+      redirect_to(hotels_path)
+    else
+      #TODO: Implement the errors control
     end
   end
 
   def destroy
     hotel = Hotel.find_by_id(params[:id])
 
-    if(hotel)
+    if hotel
       hotel.delete
     end
 
-    redirect_to hotels_path
+    redirect_to(hotels_path)
   end
 
   private
@@ -41,5 +55,9 @@ class HotelsController < ApplicationController
       price: parameters['price'],
       website: parameters['website']
     }
+  end
+
+  def update_hotel params
+    params.require(:hotel).permit(:price, :website)
   end
 end

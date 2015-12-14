@@ -7,7 +7,7 @@
     </tr>
     <% @hotels.each do |hotel| %>
       <tr>
-        <td class="hotel-edits"><a><%= link_to 'delete', hotel_path(hotel), method: :delete %></a></td>
+        <td class="hotel-edits"><%= link_to 'edit', edit_hotel_path(hotel) %> <%= link_to 'delete', hotel_path(hotel), method: :delete %></td>
         <td class="hotel-name"><%= hotel.name %></td>
         <td class="hotel-address"><%= hotel.address %></td>
       </tr>

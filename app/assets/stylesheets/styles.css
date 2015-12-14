@@ -175,7 +175,8 @@ footer a:hover {
   text-align: left;
 }
 
-.hotel-new .btn {
+.hotel-new .btn,
+.hotel-new .pink-button input {
   background: #e41157;
   color: #fff;
   font-size: 18px;
@@ -186,12 +187,17 @@ footer a:hover {
   width: 100%;
 }
 
+.hotel-new .pink-button input {
+  text-align: center;
+}
+
 .hotel-new .btn:disabled {
   background: #ccc;
   color: #666;
 }
 
-.hotel-new .btn:hover {
+.hotel-new .btn:hover,
+.hotel-new .pink-button input:hover {
   background: #f01d63;
   border-color: #f01d63;
   box-shadow: 0 2px 10px #ccc;
