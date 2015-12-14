@@ -58,6 +58,17 @@ footer {
   padding: 35px 0;
 }
 
+footer a,
+footer a:visited {
+  color: #aaa;
+  transition: .2s linear all;
+}
+
+footer a:hover {
+  color: #e41157;
+  text-decoration: none;
+}
+
 #get-places {
   border: 1px solid #e9e9e9;
   border-left: 0;
@@ -100,11 +111,60 @@ footer {
   margin: 10px 0 0 0;
 }
 
+.actions,
+.field {
+  margin: 20px auto;
+  width: 500px;
+}
+
+.actions input,
+.actions input:visited {
+  background: #e41157;
+  border: 1px solid #e41157;
+  color: #fff;
+  font-size: 18px;
+  font-weight: 100;
+  height: 40px;
+  transition: .2s linear all;
+  width: 100%;
+}
+
+.actions input:hover {
+  background: #f01d63;
+  border-color: #f01d63;
+  box-shadow: 0 2px 10px #ccc;
+}
+
+.admin-header {
+  height: 100px;
+  margin: 20px auto 0;
+  width: 400px;
+}
+
 .fa-map-marker {
   color: #e41157;
   font-size: 50px;
   margin-right: 10px;
   margin-top: 3px;
+}
+
+.field input {
+  border-left: 0;
+  border-right: 0;
+  border-top: 0;
+  border-width: 1px;
+  font-size: 20px;
+  font-weight: 100;
+  height: 40px;
+  outline: 0;
+  text-align: center;
+  width: 100%;
+}
+
+.field label {
+  font-family: 'Roboto';
+  font-size: 18px;
+  font-weight: 300;
 }
 
 .main-content {

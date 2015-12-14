@@ -1,5 +1,7 @@
 source 'https://rubygems.org'
 
+# Devise to manage the users of the app
+gem 'devise'
 # Toastr to show errors
 gem 'toastr-rails'
 # Activerecord Postgis Adapter

@@ -1,0 +1,26 @@
+<% if request.original_fullpath.include? "/users/" %>
+  <header>
+    <article class="col-md-12 col-xs-12">
+      <div class="admin-header">
+        <div class="pull-left">
+          <i class="fa fa-map-marker"></i>
+        </div>
+        <div class="pull-left">
+          <h1>HotelFinder</h1>
+        </div>
+      </div>
+    </article>
+  </header>  
+<% else %>
+  <header class="content container">
+    <article class="col-md-12 col-xs-12">
+      <div class="pull-left">
+        <i class="fa fa-map-marker"></i>
+      </div>
+      <div class="pull-left">
+        <h1>HotelFinder</h1>
+        <h2>find the best hotel through your interests</h2>
+      </div>
+    </article>
+  </header>
+<% end %>

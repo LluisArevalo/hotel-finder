@@ -1,0 +1,16 @@
+<% if !request.original_fullpath.include? "/users/" %>
+  <footer class="container-fluid">
+    <div class="container text-right">
+      <div class="pull-left">
+        <% if user_signed_in? %>
+          <%= link_to 'Sign out', '/users/sign_out', :method => 'delete' %>
+        <% else %>
+          <%= link_to 'Sign in', '/users/sign_in' %><br>
+        <% end %>
+      </div>
+      <div class="pull-right">
+        developed by Lluís Arévalo
+      </div>
+    </div>
+  </footer>
+<% end %>

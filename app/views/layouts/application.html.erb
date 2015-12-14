@@ -9,22 +9,8 @@
   <script src="https://maps.googleapis.com/maps/api/js?libraries=places"></script>
 </head>
 <body>
-  <header class="content container">
-    <article class="col-md-12 col-xs-12">
-      <div class="pull-left">
-        <i class="fa fa-map-marker"></i>
-      </div>
-      <div class="pull-left">
-        <h1>HotelFinder</h1>
-        <h2>find the best hotel through your interests</h2>
-      </div>
-    </article>
-  </header>
+  <%= render 'partials/header' %>
   <%= yield %>
-  <footer class="container-fluid">
-    <div class="container text-right">
-      developed by Lluís Arévalo
-    </div>
-  </footer>
+  <%= render 'partials/footer' %>
 </body>
 </html>
