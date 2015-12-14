@@ -78,7 +78,11 @@
   }
 
   function hotelsFound(response){
-    this.hotelHandler.loadHotels(this.map, response);
+    if(response.length > 0){
+      this.hotelHandler.loadHotels(this.map, response);
+    }else{
+      toastr.warning('No hotels were found close enough to more than a point of interest');
+    }
   }
 
   function autocompleteOnSuccess(autocomplete, response){
@@ -90,7 +94,7 @@
       this.currentPois.push(place.id);
     }
 
-    if(place.geometry.location){
+    if(place.geometry !== undefined && place.geometry.location){
       this.map.setCenter(place.geometry.location);
       this.map.setZoom(this.config.zoom);
 
@@ -106,6 +110,10 @@
     }
   }
 
+  function autoCompleteOnError(error){
+    console.log("Error on autocomplete success: " + error);
+  }
+
   function addCurrentMarker(place, marker){
     this.currentMarkers[place.id] = marker;
   }
@@ -118,15 +126,19 @@
   }
 
   function savePointOfInterest(place, ajax, currentPois){
-    var parameters = {
-      lat: place.geometry.location.lat(),
-      lng: place.geometry.location.lng(),
-      name: place.name,
-      address: place.formatted_address
-    }
+    if(place.geometry === undefined){
+      toastr.error('The address was not found');
+    }else{
+      var parameters = {
+        lat: place.geometry.location.lat(),
+        lng: place.geometry.location.lng(),
+        name: place.name,
+        address: place.formatted_address
+      }
 
-    var uri = "/api/point_of_interests";
-    ajax.execute(uri, poiSaved.bind(this, currentPois), parameters, 'POST');
+      var uri = "/api/point_of_interests";
+      ajax.execute(uri, poiSaved.bind(this, currentPois), parameters, 'POST');
+    }
   }
 
   function generatePlace(response){

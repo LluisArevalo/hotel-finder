@@ -1,5 +1,7 @@
 source 'https://rubygems.org'
 
+# Toastr to show errors
+gem 'toastr-rails'
 # Activerecord Postgis Adapter
 gem 'activerecord-postgis-adapter'
 # Font awesome
