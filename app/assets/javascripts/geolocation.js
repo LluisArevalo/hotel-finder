@@ -106,7 +106,12 @@
         addPlaceToList(place);
       }
 
-      clearAutocompleteText();
+      var hiddenLatLng = $('#latLng');
+      if(hiddenLatLng.val() !== undefined){
+        hotelNewForm(place);
+      } else {
+        clearAutocompleteText();
+      }
     }
   }
 
@@ -148,7 +153,8 @@
                                          parseFloat(response.longitude))
       },
       name: response.name,
-      id: response.id
+      id: response.id,
+      formatted_address: response.address
     };
   }
 

@@ -1,0 +1,30 @@
+<section class="container">
+  <div id="title" class="col-md-12 col-xs-12">
+    <h2>Add a new hotel</h2>
+  </div>
+  <form action="/hotels" method="post" class="hotel-new">
+    <input type="hidden" id="latLng" name="[hotel][latLng]">
+    <div class="col-md-10 col-xs-10">
+      <label for="get-places">Hotel</label>
+      <input type="text" name="get-places" id="get-places" placeholder="">
+    </div>
+    <div class="col-md-2 col-xs-2">
+      <button type="submit" class="btn" disabled>Save</button>
+    </div>
+    <div class="pull-left col-md-4 col-xs-4">
+      <label for="name">Name</label><br>
+      <input type="text" id="name" name="[hotel][name]"><br>
+    </div>
+    <div class="pull-right col-md-8 col-xs-8">
+      <label for="name">Address</label><br>
+      <input type="text" id="address" name="[hotel][address]" class="txt-address"><br>
+    </div>
+  </form>
+  <div class="col-md-12 col-xs-12">
+    <div id="loading" class="pull-left col-md-12 col-xs-12 text-center hotel-new">
+      <%= image_tag('loader.gif') %>
+      <p>Loading map...</p>
+    </div>
+    <div id="map" class="pull-left col-md-12 col-xs-12 hotel-new"></div>
+  </div>
+</section>

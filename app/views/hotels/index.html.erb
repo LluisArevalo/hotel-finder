@@ -1,0 +1,22 @@
+<section class="container">
+  <table>
+    <tr>
+      <th class="hotel-edits">&nbsp;</th>
+      <th class="hotel-name">Name</th>
+      <th class="hotel-address">Address</th>
+    </tr>
+    <% @hotels.each do |hotel| %>
+      <tr>
+        <td class="hotel-edits"><a><%= link_to 'delete', hotel_path(hotel), method: :delete %></a></td>
+        <td class="hotel-name"><%= hotel.name %></td>
+        <td class="hotel-address"><%= hotel.address %></td>
+      </tr>
+    <% end %>
+    <tr>
+      <td>&nbsp;</td>
+      <td colspan="2">
+        <%= link_to 'new hotel', new_hotel_path %>
+      </td>
+    </tr>
+  </table>
+</section>

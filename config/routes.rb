@@ -1,9 +1,9 @@
 Rails.application.routes.draw do
-  devise_for :users
   get '/' => 'site#home'
+  devise_for :users
+  resources :hotels, only: [:index, :destroy, :new, :create]
 
   scope '/api' do
-    resources :hotels, only: [:create]
     resources :point_of_interests, only: [:create]
   end
 
