@@ -10,17 +10,6 @@ class HotelsController < ApplicationController
   end
 
   def create
-    # parameters = JSON.parse(params[:ajax_parameters].to_json)
-    # p = generate_new_hotel(parameters)
-    
-    # hotel = Hotel.new(p)
-
-    # if hotel.save
-    #   render(json: hotel, status: :created)
-    # else
-    #   render(status: :bad_request)
-    # end
-    
     parameters = generate_new_hotel(params[:hotel])
     hotel = Hotel.new(parameters)
 
