@@ -17,7 +17,9 @@
 
     return {
       coords: coordinates,
-      description: place.name
+      description: place.name,
+      price: place.price,
+      website: place.website
     }
   };
 
@@ -63,18 +65,28 @@
       icon: image
     });
 
-    getHotelMarkerEvent(marker, map, name);
+    getHotelMarkerEvent(marker, map, name, markerInfo);
     this.currentHotels.push(marker);
 
     return marker;
   }
 
-  function getHotelMarkerEvent(marker, map, name){
+  function getHotelMarkerEvent(marker, map, name, markerInfo){
     google.maps.event.addListener(marker, 'click', function(){
       var circle = getRadiusCircle(marker, map);
 
+      var html = '<strong>' + name + '</strong>'
+      
+      if(markerInfo.price !== null){
+        html += '<div>Book it from ' + markerInfo.price + ' €</div>'
+      }
+
+      if(markerInfo.website){
+        html += '<a href="' + markerInfo.website + '" target="_blank">More info on the website</a>';
+      }
+
       var infoWindow = new google.maps.InfoWindow({
-        content: name
+        content: html
       });
 
       google.maps.event.addListener(infoWindow, 'closeclick', function(){
