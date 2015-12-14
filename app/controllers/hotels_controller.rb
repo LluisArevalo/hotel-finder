@@ -37,7 +37,9 @@ class HotelsController < ApplicationController
     {
       name: parameters['name'],
       address: parameters['address'],
-      latlong: "POINT(#{latLng[0]} #{latLng[1]})"
+      latlong: "POINT(#{latLng[0]} #{latLng[1]})",
+      price: parameters['price'],
+      website: parameters['website']
     }
   end
 end
