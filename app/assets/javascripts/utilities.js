@@ -25,6 +25,8 @@
     this.currentHotels.forEach(function(marker){
       marker.setMap(null);
     });
+
+    this.currentHotels = [];
   }
 
   function getCoordinatesPoi(place){

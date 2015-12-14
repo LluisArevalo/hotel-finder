@@ -71,7 +71,7 @@
       var id = currentElement.attr("data-id");
 
       self.currentMarkers[id].setMap(null);
-      self.currentMarkers[id] = null;
+      delete self.currentMarkers[id]
       self.currentPois.splice(self.currentPois.indexOf(id), 1);
       currentElement.parent().remove();
     });
