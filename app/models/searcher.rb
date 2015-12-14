@@ -10,12 +10,18 @@ class Searcher
       end
     end
 
-    select_matching_hotels(hotels)
+    select_matching_hotels(hotels, poi_id_array)
   end
 
   private
 
-  def self.select_matching_hotels hotels
-    (hotels.find_all { |hotel| hotels.count(hotel) > 1 }).uniq
+  def self.select_matching_hotels hotels, poi_id_array
+    percent = poi_id_array.length / 2.0
+
+    filtered = hotels.find_all do |hotel| 
+      hotels.count(hotel) >=  percent
+    end
+
+    filtered.uniq
   end
 end
