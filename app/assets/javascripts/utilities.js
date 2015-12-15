@@ -98,17 +98,10 @@
   }
 
   function getCoordinatesHotel(place){
-    var coordinates = getCoordenatesFromPostgis(place.latlong);
-
     return {
-      lat: parseFloat(coordinates[0]),
-      lng: parseFloat(coordinates[1])
+      lat: parseFloat(place.lat),
+      lng: parseFloat(place.lng)
     }
-  }
-
-  function getCoordenatesFromPostgis(latlong){
-    var coordinates = latlong.replace("POINT (", "").replace(")");
-    return coordinates.split(" ");
   }
 
   function getRadiusCircle(marker, map){

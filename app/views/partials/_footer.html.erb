@@ -3,9 +3,9 @@
     <div class="container text-right">
       <div class="pull-left">
         <% if user_signed_in? %>
-          <%= link_to 'Manage hotels', '/hotels' %> | <%= link_to 'Sign out', '/users/sign_out', :method => 'delete' %>
+          <%= link_to 'Manage hotels', hotels_path %> | <%= link_to 'Sign out', destroy_user_session_path, :method => 'delete' %>
         <% else %>
-          <%= link_to 'Sign in', '/users/sign_in' %><br>
+          <%= link_to 'Sign in', new_user_session_path %><br>
         <% end %>
       </div>
       <div class="pull-right">

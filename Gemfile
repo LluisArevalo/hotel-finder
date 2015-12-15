@@ -52,5 +52,8 @@ group :development do
 
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
+
+  # Traceroute - Shows the routes that are not used, and the controller actions that are not used
+  gem 'traceroute'
 end
 

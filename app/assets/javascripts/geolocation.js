@@ -57,7 +57,7 @@
     var self = this;
     
     $('.find-hotels').on('click', function(event){
-      var uri = '/api/point_of_interests/get_hotels_around/';
+      var uri = '/api/point_of_interests/find_hotels_around/';
       var parameters = self.currentPois;
       self.ajax.execute(uri, hotelsFound.bind(self), parameters);
     });
