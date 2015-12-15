@@ -1,4 +1,6 @@
 class CitiesController < ApplicationController
+  before_action :authenticate_user!, except: [:show]
+  
   def index
     @cities = City.all.order(:name)
   end
