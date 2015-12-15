@@ -42,22 +42,4 @@ RSpec.describe PointOfInterest, type: :model do
       expect(hotels.length).to be(1)
     end
   end
-
-  context 'with two points of interest' do
-    before (:each) do
-      @ironhack = PointOfInterest.create({ name: 'test-poi', 
-                                           address: 'Calle Núñez de Balboa, 120, 28006 Madrid, España',
-                                           latitude: 40.438308,
-                                           longitude: -3.68153800000005 })
-
-      @ironhack2 = PointOfInterest.create({ name: 'test-poi', 
-                                            address: 'Calle Núñez de Balboa, 120, 28006 Madrid, España',
-                                            latitude: 40.438308,
-                                            longitude: -3.68153800000005 })
-    end
-
-    # it 'should not add the repeated element, specified by name' do
-      
-    # end
-  end
 end
