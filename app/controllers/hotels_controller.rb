@@ -6,11 +6,12 @@ class HotelsController < ApplicationController
   end
 
   def new
-
+    @cities = City.all
   end
 
   def edit
     @hotel = Hotel.find_by_id(params[:id])
+    @cities = City.all
   end
 
   def create
@@ -52,16 +53,18 @@ class HotelsController < ApplicationController
 
   def generate_new_hotel parameters
     latLng = parameters[:latLng].split
+    
     {
       name: parameters['name'],
       address: parameters['address'],
       latlong: "POINT(#{latLng[0]} #{latLng[1]})",
       price: parameters['price'],
-      website: parameters['website']
+      website: parameters['website'],
+      city_id: parameters['city_id']
     }
   end
 
   def update_hotel params
-    params.require(:hotel).permit(:price, :website)
+    params.require(:hotel).permit(:price, :website, :city_id)
   end
 end

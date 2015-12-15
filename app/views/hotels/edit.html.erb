@@ -11,13 +11,17 @@
       <%= f.label :address %><br>
       <%= f.text_field :address, :disabled => true, :html => { :class => 'txt-address' } %>
     </div>
-    <div class="pull-left col-md-4 col-xs-4">
+    <div class="pull-left col-md-4 col-xs-4 margin-bottom">
       <%= f.label :price %><br>
       <%= f.text_field :price, :autofocus => true %><br>
     </div>
-    <div class="pull-left col-md-8 col-xs-8">
-      <%= f.label :website %><br>
+    <div class="pull-left col-md-8 col-xs-8 margin-bottom">
+      <%= f.label :web %><br>
       <%= f.text_field :website, :html => { :class => 'txt-address' } %><br>
+    </div>
+    <div class="pull-left col-md-4 col-xs-4">
+      <%= f.label :city %><br>
+      <%= select_tag "[hotel][city_id]", options_from_collection_for_select(@cities, :id, :name) %><br>
     </div>
     <div class="pull-right col-md-2 col-xs-2 margin-bottom pink-button">
       <%= f.submit :update %>

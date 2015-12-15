@@ -16,19 +16,27 @@
     </div>
     <div class="pull-left col-md-4 col-xs-4 margin-bottom">
       <label for="name">Name</label><br>
-      <input type="text" id="name" name="[hotel][name]"><br>
+      <input type="text" id="name" name="[hotel][name]">
     </div>
     <div class="pull-right col-md-8 col-xs-8 margin-bottom">
       <label for="name">Address</label><br>
-      <input type="text" id="address" name="[hotel][address]" class="txt-address"><br>
+      <input type="text" id="address" name="[hotel][address]" class="txt-address">
     </div>
     <div class="pull-left col-md-4 col-xs-4 margin-bottom">
-      <label for="name">Price</label><br>
-      <input type="text" id="price" name="[hotel][price]"><br>
+      <label for="price">Price</label><br>
+      <input type="text" id="price" name="[hotel][price]">
     </div>
     <div class="pull-right col-md-8 col-xs-8 margin-bottom">
-      <label for="name">Website</label><br>
-      <input type="text" id="website" name="[hotel][website]" class="txt-address"><br>
+      <label for="website">Web</label><br>
+      <input type="text" id="website" name="[hotel][website]" class="txt-address">
+    </div>
+    <div class="pull-left col-md-4 col-xs-4 margin-bottom">
+      <label for="city">City</label><br>
+      <select id="city_id" name="[hotel][city_id]">
+        <% @cities.each do |city| %>
+          <option value="<%= city.id %>"><%= city.name %></option>
+        <% end %>
+      </select>
     </div>
   </form>
   <div class="col-md-12 col-xs-12">
