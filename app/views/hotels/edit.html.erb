@@ -21,7 +21,7 @@
     </div>
     <div class="pull-left col-md-4 col-xs-4">
       <%= f.label :city %><br>
-      <%= select_tag "[hotel][city_id]", options_from_collection_for_select(@cities, :id, :name) %><br>
+      <%= f.collection_select :city_id, @cities, :id, :name %>
     </div>
     <div class="pull-right col-md-2 col-xs-2 margin-bottom pink-button">
       <%= f.submit :update %>

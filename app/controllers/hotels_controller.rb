@@ -3,7 +3,7 @@ class HotelsController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    @hotels = Hotel.all.order :name
+    @cities = City.all.order(:name)
   end
 
   def new

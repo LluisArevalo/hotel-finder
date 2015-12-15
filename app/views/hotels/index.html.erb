@@ -1,20 +1,28 @@
 <section class="container admin-content">
-  <table>
-    <tr>
-      <th class="hotel-edits">&nbsp;</th>
-      <th class="hotel-name">Name</th>
-      <th class="hotel-address">Address</th>
-    </tr>
-    <% @hotels.each do |hotel| %>
+  <% @cities.each do |city| %>
+    <table>
       <tr>
-        <td class="hotel-edits"><%= link_to 'edit', edit_hotel_path(hotel) %> <%= link_to 'delete', hotel_path(hotel), method: :delete %></td>
-        <td class="hotel-name"><%= hotel.name %></td>
-        <td class="hotel-address"><%= hotel.address %></td>
+        <td>&nbsp;</td>
+        <td colspan="3">
+          <h3><%= city.name %></h3>
+        </td>
       </tr>
-    <% end %>
-    <tr>
-      <td>&nbsp;</td>
-      <td colspan="2"><%= link_to 'add new hotel', new_hotel_path, class: 'admin' %></td>
-    </tr>
-  </table>
+      <tr>
+        <th class="hotel-edits">&nbsp;</th>
+        <th class="hotel-city">City</th>
+        <th class="hotel-name">Name</th>
+        <th class="hotel-address">Address</th>
+      </tr>
+      <% city.hotels.order(:name).each do |hotel| %>
+        <tr>
+          <td class="hotel-edits"><%= link_to 'edit', edit_hotel_path(hotel) %> <%= link_to 'delete', hotel_path(hotel), method: :delete %></td>
+          <td class="hotel-city"><%= hotel.city.name if hotel.city %></td>
+          <td class="hotel-name"><%= hotel.name %></td>
+          <td class="hotel-address"><%= hotel.address %></td>
+        </tr>
+      <% end %>
+    </table>
+  <% end %>
+
+  <%= link_to 'add new hotel', new_hotel_path, class: 'admin' %>
 </section>
