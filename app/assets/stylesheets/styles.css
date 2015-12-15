@@ -167,6 +167,10 @@ footer a:hover {
   width: 100%;
 }
 
+.hidden {
+  display: none;
+}
+
 .hotel-new input,
 .hotel-new #get-places {
   border: 1px solid #eee;
@@ -243,8 +247,16 @@ footer a:hover {
   padding-left: 0;
 }
 
-.hidden {
-  display: none;
+.message.alert {
+  background: #f9d0de;
+  border: 1px solid #910e3a;
+  border-radius: 0;
+  box-sizing: border-box;
+  clear: both;
+  color: #910e3a;
+  font-size: 16px;
+  font-weight: 300;
+  padding: 10px;
 }
 
 .remove-marker,

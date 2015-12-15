@@ -20,7 +20,9 @@ class HotelsController < ApplicationController
     if hotel.save
       redirect_to(hotels_path)
     else
-      #TODO: Implement the errors control
+      flash[:alert] = 'The hotel already exists'
+      render(:new)
+      flash[:alert] = ''
     end
   end
 
@@ -30,7 +32,9 @@ class HotelsController < ApplicationController
     if hotel.update(update_hotel(params))
       redirect_to(hotels_path)
     else
-      #TODO: Implement the errors control
+      flash[:alert] = 'Something went wrong, please try it again'
+      render(:edit)
+      flash[:alert] = ''
     end
   end
 
