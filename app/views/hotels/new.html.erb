@@ -2,7 +2,9 @@
   <div id="title" class="col-md-12 col-xs-12">
     <h2>New hotel</h2>
   </div>
-  <%= flash_message %>
+  <% if flash_message != "" %>
+    <%= flash_message %>
+  <% end %>
   <form action="/hotels" method="post" class="hotel-new">
     <input type="hidden" id="latLng" name="[hotel][latLng]">
     <div class="col-md-10 col-xs-10">

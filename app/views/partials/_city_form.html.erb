@@ -1,0 +1,21 @@
+<% if flash_message != "" %>
+  <%= flash_message %>
+<% end %>
+
+<%= form_for @city, :html => { :class => 'hotel-new' } do |f| %>
+  <div class="pull-left col-md-12 col-xs-12 margin-bottom">
+    <%= f.label :name %><br>
+    <%= f.text_field :name %>
+  </div>
+  <div class="pull-left col-md-6 col-xs-6">
+    <%= f.label :latitude %><br>
+    <%= f.text_field :latitude, :html => { :class => 'txt-address' } %><br>
+  </div>
+  <div class="pull-left col-md-6 col-xs-6">
+    <%= f.label :longitude %><br>
+    <%= f.text_field :longitude, :html => { :class => 'txt-address' } %><br>
+  </div>
+  <div class="pull-right col-md-2 col-xs-2 margin-bottom pink-button">
+    <%= f.submit :save %>
+  </div>
+<% end %>

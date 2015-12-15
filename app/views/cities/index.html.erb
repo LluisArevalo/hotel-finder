@@ -1,0 +1,20 @@
+<section class="container">
+  <table>
+    <tr>
+      <th class="hotel-edits">&nbsp;</th>
+      <th class="hotel-name">Name</th>
+    </tr>
+    <% @cities.each do |city| %>
+      <tr>
+        <td class="hotel-edits"><%= link_to 'edit', edit_city_path(city) %> <%= link_to 'delete', city_path(city), method: :delete %></td>
+        <td class="hotel-name"><%= city.name %> <span>(<%= city.latitude %>, <%= city.longitude %>)</span></td>
+      </tr>
+    <% end %>
+    <tr>
+      <td>&nbsp;</td>
+      <td colspan="2">
+        <%= link_to 'add new city', new_city_path, class: 'admin' %>
+      </td>
+    </tr>
+  </table>
+</section>

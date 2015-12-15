@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   get '/' => 'site#home'
   devise_for :users
   resources :hotels, only: [:index, :destroy, :new, :create, :edit, :update]
-
+  resources :cities, only: [:index, :new, :create, :edit, :update, :destroy]
   scope '/api' do
     resources :point_of_interests, only: [:create] do
       get :find_hotels_around, on: :collection
