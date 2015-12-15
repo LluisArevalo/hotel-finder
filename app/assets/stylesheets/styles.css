@@ -160,6 +160,10 @@ footer a:hover {
   padding: 0;
 }
 
+.col-md-12.col-xs-12 #map {
+  margin-bottom: 20px;
+}
+
 #title {
   margin-bottom: 20px;
 }

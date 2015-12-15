@@ -7,6 +7,8 @@ HotelFinderApp.init = function(){
   console.log("Initializing hotel finder app...");
 }
 
-// $(document).on('ready', function(){
-//   HotelFinderApp.init();
-// });
+$(document).on('ready', function(){
+  if($(".js-load-map")[0]){
+    HotelFinderApp.init();
+  }
+});

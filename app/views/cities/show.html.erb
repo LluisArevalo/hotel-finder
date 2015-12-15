@@ -1,7 +1,7 @@
 <input id="lat" type="hidden" value="<%= @city.latitude %>">
 <input id="lng" type="hidden" value="<%= @city.longitude %>">
 
-<article class="container main-content">
+<article class="container main-content js-load-map">
   <div id="input-wrapper" class="col-md-12 col-xs-12">
     <span>What do you want to visit in <span class='pink'><%= @city.name %></span>?</span>
     <input type="text" name="get-places" id="get-places" placeholder="Place, street, monument...">
