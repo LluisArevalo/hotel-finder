@@ -1,5 +1,7 @@
 source 'https://rubygems.org'
 
+# Paperclip - For the city images
+gem "paperclip", git: "git://github.com/thoughtbot/paperclip.git"
 # Devise to manage the users of the app
 gem 'devise'
 # Toastr to show errors

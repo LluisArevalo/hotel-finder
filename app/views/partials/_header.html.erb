@@ -1,26 +1,8 @@
-<% if request.original_fullpath == "/" %>
-  <header class="content container">
-    <article class="col-md-12 col-xs-12">
-      <div class="pull-left">
-        <i class="fa fa-map-marker"></i>
-      </div>
-      <div class="pull-left">
-        <h1>HotelFinder</h1>
-        <h2>find the best hotel through your interests</h2>
-      </div>
-    </article>
-  </header>
-<% else %>
-  <header>
-    <article class="col-md-12 col-xs-12">
-      <div class="admin-header">
-        <div class="pull-left">
-          <i class="fa fa-map-marker"></i>
-        </div>
-        <div class="pull-left">
-          <h1>HotelFinder</h1>
-        </div>
-      </div>
-    </article>
-  </header>
-<% end %>
+<header class="content container-fluid">
+  <article class="col-md-12 col-xs-12 text-center">
+    <h1>H<i class="fa fa-map-marker"></i>telFinder</h1>
+    <% if request.original_fullpath == "/" %>
+      <h2>find the best hotel through your interests</h2>
+    <% end %>
+  </article>
+</header>

@@ -15,6 +15,10 @@
     <%= f.label :longitude %><br>
     <%= f.text_field :longitude, :html => { :class => 'txt-address' } %><br>
   </div>
+  <div class="pull-left col-md-12 col-xs-12">
+    <%= f.label :image %>
+    <%= f.file_field :image, as: :image, :html => { :class => 'txt-image' } %>
+  </div>
   <div class="pull-right col-md-2 col-xs-2 margin-bottom pink-button">
     <%= f.submit :save %>
   </div>

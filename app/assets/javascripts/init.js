@@ -8,5 +8,10 @@ HotelFinderApp.init = function(){
 }
 
 $(document).on('ready', function(){
-  HotelFinderApp.init();
+  cityImageHover();
+  // HotelFinderApp.init();
 });
+
+function cityImageHover(){
+  
+}

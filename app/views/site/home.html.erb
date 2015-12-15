@@ -1,19 +1,12 @@
 <section class="container main-content">
-  <div id="input-wrapper" class="col-md-12 col-xs-12">
-    <span>What do you want to visit in Madrid?</span>
-    <input type="text" name="get-places" id="get-places" placeholder="Place, street, monument...">
-  </div>
-
-  <div class="col-md-12 col-xs-12">
-    <div id="loading" class="pull-left col-md-8 col-xs-8 text-center">
-      <%= image_tag('loader.gif') %>
-      <p>Loading map...</p>
-    </div>
-    <div id="map" class="pull-left col-md-8 col-xs-8"></div>
-    <div id="mapList" class="pull-left col-md-4 col-xs-4">
-      <ul>
-      </ul>
-    </div>
-    <button class="find-hotels pull-left col-md-8 col-xs-8 hidden">Find the best hotel</button>
-  </div>
+  <% @cities.each do |city| %>
+    <article class="pull-left col-md-4 col-xs-4">
+      <div class="cities">
+        <%= link_to city_path(city) do %>
+          <%= image_tag city.image.url, class: 'transform' %>
+          <div class="city"><%= city.name %></div>
+        <% end %>
+      </div>
+    </article>
+  <% end %>
 </section>

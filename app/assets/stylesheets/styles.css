@@ -16,7 +16,8 @@ h2 {
 
 h1 {
   font-size: 54px;
-  font-weight: 300;
+  font-weight: 400;
+  letter-spacing: -1px;
   text-transform: uppercase;
 }
 
@@ -42,10 +43,40 @@ a.admin:hover {
   text-decoration: none;
 }
 
+.city,
+.city:visited {
+  background: #e41157;
+  color: #fff;
+  display: block;
+  font-size: 20px;
+  font-weight: 300;
+  padding: 10px 0;
+  position: relative;
+  text-align: center;
+  transition: .5s linear all;
+  z-index: 1;
+}
+
+.cities a:hover {
+  text-decoration: none;
+}
+
+.cities:hover .transform {
+  transform:scale(1.050);
+  -ms-transform:scale(1.050);
+  -moz-transform:scale(1.050);
+  -webkit-transform:scale(1.050);
+  -o-transform:scale(1.050); 
+}
+
 header.content {
-  min-height: 60%;
   padding-top: 20px;
   width: 100%;
+}
+
+header h2 {
+  font-size: 30px;
+  margin-top: 30px;
 }
 
 button.find-hotels {
@@ -163,11 +194,21 @@ footer a:hover {
   width: 400px;
 }
 
+.cities {
+  overflow: hidden;
+}
+
+.cities img {
+  width: 100%;
+  transition: all .2s linear;
+}
+
 .fa-map-marker {
   color: #e41157;
-  font-size: 50px;
-  margin-right: 10px;
-  margin-top: 3px;
+  font-size: 60px;
+  position: relative;
+  top: 12px;
+  margin: 0 -2px 0 2px;
 }
 
 .field input,
@@ -249,6 +290,7 @@ footer a:hover {
 
 .main-content {
   padding: 50px 0;
+  min-height: 435px;
 }
 
 .main-content span {
