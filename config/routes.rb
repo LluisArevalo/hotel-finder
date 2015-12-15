@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  
   get '/' => 'site#home'
   devise_for :users
   resources :hotels, only: [:index, :destroy, :new, :create, :edit, :update]
@@ -10,4 +11,5 @@ Rails.application.routes.draw do
   end
 
   get '/api/point_of_interests/get/:name' => 'point_of_interests#search'
+  
 end
