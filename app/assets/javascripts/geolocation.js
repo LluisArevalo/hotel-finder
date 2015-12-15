@@ -11,7 +11,7 @@
   HotelFinderApp.Geolocation = function(){
     this.ajax = new HotelFinderApp.Ajax();
     this.config = {
-      initZoom: 14,
+      initZoom: 13,
       zoom: 16
     };
     this.currentPois = [];
@@ -24,8 +24,11 @@
     }
   }
 
-  HotelFinderApp.Geolocation.prototype.onLocation = function(position){
-    var centerMadrid = new google.maps.LatLng(40.4167754, -3.7037902);
+  HotelFinderApp.Geolocation.prototype.onLocation = function(){
+    var latitude = parseFloat($("#lat").val()) || 40.4167754;
+    var longitude = parseFloat($("#lng").val()) || -3.7037902;
+
+    var centerMadrid = new google.maps.LatLng(latitude, longitude);
 
     this.map = new google.maps.Map($('#map')[0], {
       center: centerMadrid,

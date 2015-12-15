@@ -7,11 +7,6 @@ HotelFinderApp.init = function(){
   console.log("Initializing hotel finder app...");
 }
 
-$(document).on('ready', function(){
-  cityImageHover();
-  // HotelFinderApp.init();
-});
-
-function cityImageHover(){
-  
-}
+// $(document).on('ready', function(){
+//   HotelFinderApp.init();
+// });
