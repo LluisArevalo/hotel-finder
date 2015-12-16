@@ -73,10 +73,15 @@
       var currentElement = $(event.currentTarget);
       var id = currentElement.attr("data-id");
 
+      self.hotelHandler.utilities.clearHotelMarkers();
       self.currentMarkers[id].setMap(null);
       delete self.currentMarkers[id]
       self.currentPois.splice(self.currentPois.indexOf(id), 1);
       currentElement.parent().remove();
+
+      if(Object.keys(self.currentMarkers).length === 0){
+        $("button.find-hotels").addClass("hidden");
+      }
     });
   }
 
@@ -89,6 +94,7 @@
   }
 
   function autocompleteOnSuccess(autocomplete, response){
+    this.hotelHandler.utilities.clearHotelMarkers();
     if(response === null){
       var place = autocomplete.getPlace();
       savePointOfInterest(place, this.ajax, this.currentPois);
