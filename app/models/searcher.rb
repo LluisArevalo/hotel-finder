@@ -16,7 +16,7 @@ class Searcher
   private
 
   def self.select_matching_hotels hotels, poi_id_array
-    percent = poi_id_array.length / 2.0
+    percent = poi_id_array.length / 4.0
 
     filtered = hotels.find_all do |hotel| 
       hotels.count(hotel) >=  percent
