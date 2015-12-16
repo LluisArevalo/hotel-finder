@@ -10,7 +10,7 @@ class Searcher
       end
     end
 
-    select_matching_hotels(hotels, poi_id_array)
+    sort_by_price(select_matching_hotels(hotels, poi_id_array))
   end
 
   private
@@ -23,5 +23,11 @@ class Searcher
     end
 
     filtered.uniq
+  end
+
+  def self.sort_by_price hotels
+    hotels.sort! do |a,b|
+      a.price.to_f > 0 && b.price.to_f > 0 ? a.price <=> b.price : a.price ? -1 : 1
+    end
   end
 end
