@@ -45,11 +45,11 @@
       animation: google.maps.Animation.DROP
     });
 
-    marker.addListener('click', function(){
-      var infoWindow = new google.maps.InfoWindow({
-        content: name
-      });
+    var infoWindow = new google.maps.InfoWindow({
+      content: name
+    });
 
+    marker.addListener('click', function(){
       infoWindow.open(map, marker);
     });
 
@@ -72,28 +72,33 @@
   }
 
   function getHotelMarkerEvent(marker, map, name, markerInfo){
+    var html = '<strong>' + name + '</strong>';
+
+    if(markerInfo.price !== null){
+      html += '<div>Book it from ' + markerInfo.price + ' €</div>';
+    }
+
+    if(markerInfo.website){
+      html += '<a href="' + markerInfo.website + '" target="_blank">More info on the website</a>';
+    }
+
+    var infoWindow = new google.maps.InfoWindow({
+      content: html
+    });
+
+    var circle = null;    
+    
     google.maps.event.addListener(marker, 'click', function(){
-      var circle = getRadiusCircle(marker, map);
-
-      var html = '<strong>' + name + '</strong>'
-      
-      if(markerInfo.price !== null){
-        html += '<div>Book it from ' + markerInfo.price + ' €</div>'
-      }
-
-      if(markerInfo.website){
-        html += '<a href="' + markerInfo.website + '" target="_blank">More info on the website</a>';
-      }
-
-      var infoWindow = new google.maps.InfoWindow({
-        content: html
-      });
-
-      google.maps.event.addListener(infoWindow, 'closeclick', function(){
-        circle.setMap(null);
-      });
-
       infoWindow.open(map, marker);
+
+      if(circle === null){
+        circle = getRadiusCircle(marker, map);
+        
+        google.maps.event.addListener(infoWindow, 'closeclick', function(){
+          circle.setMap(null);
+          circle = null;
+        });
+      }
     });
   }
 
