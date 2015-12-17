@@ -62,7 +62,6 @@
     $('.find-hotels').on('click', function(event){
       var uri = '/api/point_of_interests/find_hotels_around/';
       var parameters = self.currentPois;
-      console.log(self.currentPois);
       self.ajax.execute(uri, hotelsFound.bind(self), parameters);
     });
   }
@@ -74,16 +73,20 @@
       var currentElement = $(event.currentTarget);
       var id = currentElement.attr("data-id");
 
-      self.hotelHandler.utilities.clearHotelMarkers();
-      self.currentMarkers[id].setMap(null);
-      delete self.currentMarkers[id];
-      self.currentPois.splice(self.currentPois.indexOf(parseInt(id)), 1);
+      removeMarker.bind(self)(id);
       currentElement.parent().remove();
 
       if(Object.keys(self.currentMarkers).length === 0){
         $("button.find-hotels").addClass("hidden");
       }
     });
+  }
+
+  function removeMarker(id){
+    this.hotelHandler.utilities.clearHotelMarkers();
+    this.currentMarkers[id].setMap(null);
+    delete this.currentMarkers[id];
+    this.currentPois.splice(this.currentPois.indexOf(parseInt(id)), 1);
   }
 
   function hotelsFound(response){
@@ -109,19 +112,28 @@
       this.map.setZoom(this.config.zoom);
 
       if(this.currentMarkers[place.id] === undefined){
-        var markerInfo = this.utilities.createMarkerInfo(place);
-        var marker = this.utilities.createMarker(markerInfo, this.map, place.name);
-        addCurrentMarker.bind(this)(place, marker);
-
-        addPlaceToList(place);
+        addNewMarker.bind(this)(place);
       }
 
-      var hiddenLatLng = $('#latLng');
-      if(hiddenLatLng.val() !== undefined){
-        hotelNewForm(place);
-      } else {
-        clearAutocompleteText();
-      }
+      formReady(place);
+    }
+  }
+
+  function addNewMarker(place){
+    var markerInfo = this.utilities.createMarkerInfo(place);
+    var marker = this.utilities.createMarker(markerInfo, this.map, place.name);
+
+    addCurrentMarker.bind(this)(place, marker);
+    addPlaceToList(place);
+  }
+
+  function formReady(place){
+    var hiddenLatLng = $('#latLng');
+
+    if(hiddenLatLng.val() !== undefined){
+      hotelNewForm(place);
+    } else {
+      clearAutocompleteText();
     }
   }
 
