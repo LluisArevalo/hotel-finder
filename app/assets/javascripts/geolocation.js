@@ -62,6 +62,7 @@
     $('.find-hotels').on('click', function(event){
       var uri = '/api/point_of_interests/find_hotels_around/';
       var parameters = self.currentPois;
+      console.log(self.currentPois);
       self.ajax.execute(uri, hotelsFound.bind(self), parameters);
     });
   }
@@ -75,8 +76,8 @@
 
       self.hotelHandler.utilities.clearHotelMarkers();
       self.currentMarkers[id].setMap(null);
-      delete self.currentMarkers[id]
-      self.currentPois.splice(self.currentPois.indexOf(id), 1);
+      delete self.currentMarkers[id];
+      self.currentPois.splice(self.currentPois.indexOf(parseInt(id)), 1);
       currentElement.parent().remove();
 
       if(Object.keys(self.currentMarkers).length === 0){
